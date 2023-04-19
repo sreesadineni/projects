@@ -43,26 +43,26 @@
                             <div class="tweettext">
                                 <table border="1">
                                     <tr>
-                                        {% for object in list_objects %}
+                                        
 
-                                    <th style="color:red; font-size:20px; font-family:fantasy" >User Name</th>
-                                    <th style="color:red; font-size:20px; font-family:fantasy">Tweet Name</th>
-                                    <th style="color:red; font-size:20px; font-family:fantasy">Review</th>
-                                    <th style="color:red; font-size:20px; font-family:fantasy">Review Type</th>
-                                        <th style="color:red; font-size:20px; font-family:fantasy">Review Date and Time</th>
-                                         <th style="color:red; font-size:20px; font-family:fantasy">Feedback</th>
+                                    <th bgcolor="#A7727D"style=" color:white; font-size:20px; font-family:fantasy" >User Name</th>
+                                    <th bgcolor="#A7727D" style="color:white; font-size:20px; font-family:fantasy">Tweet Name</th>
+                                    <th bgcolor="#A7727D" style="color:white; font-size:20px; font-family:fantasy">Review</th>
+                                    <th bgcolor="#A7727D" style="color:white; font-size:20px; font-family:fantasy">Review Type</th>
+                                        <th bgcolor="#A7727D" style="color:white; font-size:20px; font-family:fantasy">Review Date and Time</th>
+                                         <th bgcolor="#A7727D" style="color:white; font-size:20px; font-family:fantasy">Feedback</th>
 
 
                                     </tr>
 
-
+                                    {% for object in list_objects %}
                                     <tr>
-                                        <td style="color:red; font-size:25px; font-family:fantasy" >{{object.uname}}</td>
-                                         <td style="font-family:monospace; font-size:19px; ">{{object.tname}}</td>
-                                        <td style="font-family:monospace; font-size:19px; ">{{object.ureview}}</td>
-                                        <td style="font-family:monospace; font-size:19px;  ">{{object.sanalysis}}</td>
-                                        <td style="font-family:monospace; font-size:19px; ">{{object.dt}}</td>
-                                        <td style="font-family:monospace; font-size:19px; ">{{object.feedback}}</td>
+                                        <td style="font-size:25px;color:red; font-family:monospace" >{{object.uname}}</td>
+                                         <td style="font-family:monospace;color:red ;font-size:19px; ">{{object.tname}}</td>
+                                        <td style="font-family:monospace; color:red;font-size:19px; ">{{object.ureview}}</td>
+                                        <td style="font-family:monospace;color:red; font-size:19px;  ">{{object.sanalysis}}</td>
+                                        <td style="font-family:monospace; color:red;font-size:19px; ">{{object.dt}}</td>
+                                        <td style="font-family:monospace; color:red;font-size:19px; ">{{object.feedback}}</td>
                                      </tr>
 
 

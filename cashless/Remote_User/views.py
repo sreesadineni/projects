@@ -1,10 +1,11 @@
 from django.db.models import Count
 from django.shortcuts import render, redirect, get_object_or_404
 import datetime
+import time
 from random import seed
 from random import randint
 from django.db.models import Q
-
+from Remote_User.algo import clf
 
 # Create your views here.
 from Remote_User.models import fraud_model,account_model,review_Model,ClientRegister_Model,product_model,recommend_Model,purchase_Model,purchaseconfirm_Model
@@ -40,13 +41,11 @@ def Register1(request):
         state = request.POST.get('state')
         city = request.POST.get('city')
 
-        seed(1)
+        seed(time.clock())
         acno = randint(100000, 1000000000)
         climit = randint(100000, 1000000)
-
         cvv = randint(1000, 3000)
-
-        address=country+state+city
+        address=country+" "+state+" "+city
         bname='SBI'
         account_model.objects.create(Acname=username,Acaddress=address,Acno=acno, climit=climit, alimit=climit,Bname=bname,cvv=cvv)
         ClientRegister_Model.objects.create(username=username, email=email, password=password, phoneno=phoneno,
@@ -190,7 +189,8 @@ def purchase(request,pk):
     userObj = ClientRegister_Model.objects.get(id=userid)
     username = userObj.username
     ucity = userObj.city
-
+    obj = account_model.objects.get(Acname=username)
+    cardno=obj.Acno
     objs = product_model.objects.get(id=pk)
     tname = objs.names
     fcity = objs.c_name
@@ -204,7 +204,10 @@ def purchase(request,pk):
         uname = request.POST.get('uname')
         pname = request.POST.get('pname')
         pprice1 = request.POST.get('pprice')
+        cardno=request.POST.get('cardno')
         addr = request.POST.get('addr')
+        gender = request.POST.get('gender')
+        age = request.POST.get('age')
         yc = request.POST.get('yc')
         cvv1 = request.POST.get('cvv')
         datetime_object = datetime.datetime.now()
@@ -212,6 +215,9 @@ def purchase(request,pk):
 
         objs = account_model.objects.get(Acname=uname)
         acno = objs.Acno
+        y=clf.predict([[int(age),int(gender),int(pprice1)]])
+        acno=str(12346789^int(acno))
+
         alimit=objs.alimit
         cvv=objs.cvv
         acname=objs.Acname
@@ -225,24 +231,30 @@ def purchase(request,pk):
             fraud='No Cash'
             pst1='No Cash'
             fraud_model.objects.create(Acname=acname, Acaddress=acaddres, Acno=acno, dt=datetime_object, ftype=fraud,pname=pname)
-            purchase_Model.objects.create(uname=uname, pname=pname, price=pprice1, dt=datetime_object, addr=addr, yc=yc,
+            purchase_Model.objects.create(uname=uname, pname=pname, price=pprice1, dt=datetime_object, addr=acno, yc=addr,
                                           pstatus=pst1)
         elif cvv != cvv1:
             fraud='Wrong CVV'
             pst1='Wrong CVV'
             fraud_model.objects.create(Acname=acname, Acaddress=acaddres, Acno=acno, dt=datetime_object, ftype=fraud,pname=pname)
-            purchase_Model.objects.create(uname=uname, pname=pname, price=pprice1, dt=datetime_object, addr=addr, yc=yc,
+            purchase_Model.objects.create(uname=uname, pname=pname, price=pprice1, dt=datetime_object, addr=acno, yc=addr,
                                           pstatus=pst1)
-        elif alimit1>price and cvv == cvv1:
+        elif alimit1>price and cvv == cvv1 and y==0:
             tprice=alimit1-price
             obj = get_object_or_404(account_model, Acname=uname)
             obj.alimit = tprice
             obj.save(update_fields=["alimit"])
-            purchase_Model.objects.create(uname=uname,pname=pname,price=pprice1,dt=datetime_object,addr=addr,yc=yc,pstatus=pst1)
+            purchase_Model.objects.create(uname=uname,pname=pname,price=pprice1,dt=datetime_object,addr=acno,yc=addr,pstatus=pst1)
+        elif y==1 and alimit1>price and cvv == cvv1 :
+            fraud='random forest fraud'
+            pst1='Random forest fraud'
+            fraud_model.objects.create(Acname=acname, Acaddress=acaddres, Acno=acno, dt=datetime_object, ftype=fraud,pname=pname)
+            purchase_Model.objects.create(uname=uname, pname=pname, price=pprice1, dt=datetime_object, addr=acno, yc=addr,
+                                          pstatus=pst1)
         else:
             se = 'neutral'
 
-    return render(request,'RUser/purchase.html',{'objc':username,'objc1':tname,'ucity':ucity,'rate':tname,'pprice':pprice,'fraud':fraud})
+    return render(request,'RUser/purchase.html',{'cardno':cardno,'objc':username,'objc1':tname,'ucity':ucity,'rate':tname,'pprice':pprice,'fraud':fraud})
 
 
 

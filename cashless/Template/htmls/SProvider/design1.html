@@ -16,7 +16,7 @@
     }
 .topnav {
   overflow: hidden;
-  background-color: #812;
+  background-color: #A7727D;
 }
 
 .topnav a {
@@ -27,14 +27,14 @@
   text-decoration: none;
   font-size: 17px;
 }
-
+*
 .topnav a:hover {
   background-color: #ddd;
   color: black;
 }
 
 .topnav a.active {
-  background-color: #8e4fd1;
+  background-color: #b63e56;
   color: white;
 }
 .style1 {color: #FF0000}
@@ -47,7 +47,7 @@
 
 <div  class="topnav">
 
-  <a class="active" href="{% url 'Add_Products' %}">UPLOAD PRODUCTS</a>
+  <a href="{% url 'Add_Products' %}">UPLOAD PRODUCTS</a>
 
   <td><a  href="{% url 'View_Products_Details' %}">VIEW ALL  PRODUCTS DETAILS</a></td>
 
@@ -61,7 +61,7 @@
    <td><a  href="{% url 'View_Recommended_Products' %}">VIEW PRODUCTS RECOMMENDED</a>
     <td><a  href="{% url 'View_Purchased_Details' %}">VIEW PRODUCTS PURCHASED BY CASHLESS TRANSACTION</a>
     <td><a  href="{% url 'View_Purchased_Status' %}">VIEW PURCHASED STATUS BY CASHLESS TRANSACTION</a>
-
+      <td><a  href="{% url 'results' %}">METRICS</a></td>
     <td><a  href="{% url 'View_CreditCard_Frauds' %}">VIEW CRDIT CARD CASHLESS FRAUD DETECTIONS</a>
 
 

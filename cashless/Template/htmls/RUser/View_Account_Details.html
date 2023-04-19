@@ -42,19 +42,19 @@
                                     <tr>
 
 
-                                    <th bgcolor="#0000FF" style="color:red; font-size:20px; font-family:fantasy" ><span class="style4">Account Name</span></th>
-                                    <th bgcolor="#0000FF" style="color:red; font-size:20px; font-family:fantasy"><span class="style4">Account Address</span></th>
-                                    <th bgcolor="#0000FF" style="color:red; font-size:20px; font-family:fantasy"><span class="style4">View Credit Card Account Number</span></th>
-                                    <th bgcolor="#0000FF" style="color:red; font-size:20px; font-family:fantasy"><span class="style4">Credit Limit</span></th>
-                                        <th bgcolor="#0000FF" style="color:red; font-size:20px; font-family:fantasy"><span class="style4">Available Cash</span></th>
-                                        <th bgcolor="#0000FF" style="color:red; font-size:20px; font-family:fantasy"><span class="style4">Bank Name</span></th>
-                                        <th bgcolor="#0000FF" style="color:red; font-size:20px; font-family:fantasy"><span class="style4">CVV Number</span></th>
+                                    <th bgcolor="#A7727D" style="color:black; font-size:20px; font-family:fantasy" ><span class="style4">Account Name</span></th>
+                                    <th bgcolor="#A7727D" style="color:black; font-size:20px; font-family:fantasy"><span class="style4">Account Address</span></th>
+                                    <th bgcolor="#A7727D" style="color:black; font-size:20px; font-family:fantasy"><span class="style4">View Credit Card Number</span></th>
+                                    <th bgcolor="#A7727D" style="color:black; font-size:20px; font-family:fantasy"><span class="style4">Card Limit</span></th>
+                                        <th bgcolor="#A7727D" style="color:black; font-size:20px; font-family:fantasy"><span class="style4">Available Cash</span></th>
+                                        <th bgcolor="#A7727D" style="color:black; font-size:20px; font-family:fantasy"><span class="style4">Bank Name</span></th>
+                                        <th bgcolor="#A7727D" style="color:black; font-size:20px; font-family:fantasy"><span class="style4">CVV Number</span></th>
 
                                     </tr>
  {% for object in list_objects %}
 
                                     <tr>
-                                        <td style="color:red; font-size:25px; font-family:fantasy" ><span class="style3">{{object.Acname}}</span></td>
+                                        <td style="color:black; font-size:25px; font-family:monospace" ><span class="style3">{{object.Acname}}</span></td>
                                          <td style="font-family:monospace; font-size:19px; "><span class="style3">{{object.Acaddress}}</span></td>
                                         <td style="font-family:monospace; font-size:19px; "><span class="style3">{{object.Acno}}</span></td>
                                         <td style="font-family:monospace; font-size:19px;  "><span class="style3">{{object.climit}}</span></td>

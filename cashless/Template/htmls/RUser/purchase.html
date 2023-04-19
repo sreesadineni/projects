@@ -27,7 +27,7 @@
 	color: #FF0000;
 	font-weight: bold;
 }
-        .style3 {color: #FF0000}
+        .style3 {color: white}
         .style5 {font-weight: bold}
         </style>
 
@@ -48,28 +48,50 @@
                                 {% csrf_token %}
                                 <table width="446">
 									<tr>
-										<td width="184" bgcolor="#FFFF00"><span class="style3">User Name</span></td>
+										<td width="184" bgcolor="#A7727D"><span class="style3">User Name</span></td>
                                         <td width="144"><input type="text" name="uname" value="{{objc}}" readonly></td>
                                     </tr>
 									<tr>
-										<td bgcolor="#FFFF00"><span class="style3">Product Name</span></td>
+										<td bgcolor="#A7727D"><span class="style3">Product Name</span></td>
                                         <td><input type="text" name="pname"  value="{{objc1}}" readonly></td>
                                     </tr>
 									<tr>
-										<td bgcolor="#FFFF00"><span class="style3">Product Price </span></td>
+										<td bgcolor="#A7727D"><span class="style3">Product Price </span></td>
                                       <td><input type="text" name="pprice" value="{{pprice}}"></td>
                                     </tr>
 									<tr>
-										<td bgcolor="#FFFF00"><span class="style3"> Enter Your Address </span></td>
+										<td bgcolor="#A7727D"><span class="style3"> Enter Your Address </span></td>
                                         <td><textarea name="addr" cols="18" rows="7" ></textarea></td>
                                     </tr>
 									<tr>
-										<td bgcolor="#FFFF00"><span class="style3">Your City</span></td>
+										<td bgcolor="#A7727D"><span class="style3">Your City</span></td>
                                         <td><input type="text" name="yc" value="{{ucity}}" readonly></td>
                                     </tr>
-										<tr>
-										<td bgcolor="#FFFF00"><span class="style3">Enter Card CVV</span></td>
+									<tr>
+										<td bgcolor="#A7727D"><span class="style3">Enter Card Number</span></td>
+                                        <td><input type="text" name="cardno" value="{{cardno}}" readonly></td>
+                                    </tr>
+
+									<tr>
+										<td bgcolor="#A7727D"><span class="style3">Enter Card CVV</span></td>
                                         <td><input type="text" name="cvv"></td>
+                                    </tr>
+									<tr>
+										<td bgcolor="#A7727D"><span class="style3">Enter your gender</span></td>
+                                        <td><input type="text" name="gender">1:Female 2:Male
+										</td>
+                                    </tr>
+									<tr>
+										<td bgcolor="#A7727D"><span class="style3">Enter your Age</span></td>
+                                        <td><input type="text" name="age">
+											0:<= 18,
+											1: 19-25,
+											2: 26-35,
+											3: 36-45,
+											4: 46-55,
+											5: 56-65,
+											6: > 65</td>
+										
                                     </tr>
 
 

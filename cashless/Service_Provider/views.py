@@ -6,7 +6,7 @@ import datetime
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
-from Remote_User.models import fraud_model,product_model,ClientRegister_Model,review_Model,recommend_Model,purchase_Model,purchaseconfirm_Model
+from Remote_User.models import account_model,fraud_model,product_model,ClientRegister_Model,review_Model,recommend_Model,purchase_Model,purchaseconfirm_Model
 
 
 def serviceproviderlogin(request):
@@ -116,6 +116,9 @@ def likeschart(request,like_chart):
     charts = product_model.objects.values('names').annotate(dcount=Avg('likes'))
     return render(request,"SProvider/likeschart.html", {'form':charts, 'like_chart':like_chart})
 
+def results(request):
+    return render(request,'SProvider/results.html')
+
 def View_Products_Details(request):
     obj = product_model.objects.all()
     return render(request, 'SProvider/View_Products_Details.html', {'list_objects': obj})
@@ -134,6 +137,7 @@ def View_Recommended_Products(request):
 def View_Purchased_Details(request):
     pur='Delivered'
     obj = purchase_Model.objects.filter(pstatus=pur)
+    # ob=account_model.objects.filter(Acname=obj.uname)
     return render(request, 'SProvider/View_Purchased_Details.html', {'list_objects': obj})
 
 def View_CreditCard_Frauds(request):
@@ -144,7 +148,6 @@ def View_CreditCard_Frauds(request):
 def View_Purchased_Status(request):
     pur='Pending'
     obj = purchase_Model.objects.filter(pstatus=pur)
-
     return render(request, 'SProvider/View_Purchased_Status.html', {'list_objects': obj})
 
 def confirmstatus(request,pk):
@@ -153,7 +156,7 @@ def confirmstatus(request,pk):
     uname = objs.uname
     pname = objs.pname
     pprice = objs.price
-    addr = objs.addr
+    addr = objs.yc
 
 
     datetime_object = datetime.datetime.now()

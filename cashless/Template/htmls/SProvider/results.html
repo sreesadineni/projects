@@ -1,0 +1,12 @@
+{% extends 'SProvider/design1.html' %}
+{% block researchblock %}
+{% load static %}
+<center>
+    <h2>confusion matrix </h2>
+    <img alt="not available" src="{% static 'confusionmatrix.png' %} ">
+    <h2 >Target Data (0- nonfruad , 1-fraud)</h2> 
+<img alt="not available" src="{% static 'frauddata.png' %}">
+</center>
+
+
+{% endblock %}

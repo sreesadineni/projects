@@ -59,6 +59,7 @@ urlpatterns = [
     url(r'^View_Purchased_Details/$', serviceprovider.View_Purchased_Details, name='View_Purchased_Details'),
     url(r'^View_Purchased_Status/$', serviceprovider.View_Purchased_Status, name='View_Purchased_Status'),
     url(r'^View_CreditCard_Frauds/$', serviceprovider.View_CreditCard_Frauds, name='View_CreditCard_Frauds'),
+    url(r'^results/$', serviceprovider.results, name='results')
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
